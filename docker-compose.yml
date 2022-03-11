@@ -6,17 +6,21 @@ services:
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: 1
     volumes:
-      - ./db:/docker-entrypoint-initdb.d
+      - db-store:/var/lib/mysql
+      - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
     ports:
       - 3306:3306
     hostname: db
 
   go:
     build:
-      context: app
+      context: .
       target: local
+      dockerfile: ./docker/go/Dockerfile
     ports:
       - 8888:8888
     tty: true
     volumes:
       - ./src:/go/src/app
+volumes:
+  db-store:

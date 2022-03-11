@@ -1,0 +1,1 @@
+docker-compose exec go go run main.go
