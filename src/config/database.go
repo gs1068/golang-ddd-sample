@@ -1,7 +1,7 @@
 package config
 
 import (
-	"github.com/gs1068/golang_ddd_sample/domain/model"
+	_ "github.com/go-sql-driver/mysql"
 
 	"github.com/jinzhu/gorm"
 )
@@ -12,7 +12,6 @@ func NewDB() *gorm.DB {
 		panic(err)
 	}
 
-	db.AutoMigrate(model.Task{})
-
+	db.LogMode(true)
 	return db
 }

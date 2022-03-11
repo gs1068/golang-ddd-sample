@@ -4,12 +4,12 @@ services:
   db:
     image: mysql:8.0.28
     environment:
-      MYSQL_DATABASE: dddsample
       MYSQL_ALLOW_EMPTY_PASSWORD: 1
       TZ: "Asia/Tokyo"
     volumes:
       - db-store:/var/lib/mysql
       - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./docker/mysql/initdb.d:/docker-entrypoint-initdb.d
     ports:
       - 3306:3306
 
