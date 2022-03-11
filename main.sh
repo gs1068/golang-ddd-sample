@@ -1,0 +1,1 @@
+docker-compose exec go fresh -c fresh.conf
