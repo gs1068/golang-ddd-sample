@@ -26,6 +26,7 @@ FROM golang:1.16 as local
 WORKDIR /go/src/app/
 COPY ./src /go/src/app
 
-# RUN go mod tidy
+RUN go get github.com/pilu/fresh
+RUN go mod tidy
 
 EXPOSE 8888
