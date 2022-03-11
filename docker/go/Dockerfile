@@ -27,6 +27,9 @@ WORKDIR /go/src/app/
 COPY ./src /go/src/app
 
 RUN go get github.com/pilu/fresh
+RUN go get github.com/jinzhu/gorm
+RUN go get github.com/rubenv/sql-migrate/...
+
 RUN go mod tidy
 
 EXPOSE 8888

@@ -1,2 +1,3 @@
-docker-compose exec db mysql -u root -e "DROP DATABASE dddsample;";
-docker-compose exec db mysql -u root -e "CREATE DATABASE dddsample;";
+#!/bin/bash
+docker-compose exec db mysql -u root --execute="DROP DATABASE dddsample;";
+docker-compose exec db mysql -u root --execute="CREATE DATABASE dddsample;";
