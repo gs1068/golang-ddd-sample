@@ -2,21 +2,21 @@
 
 use DDD Architecture
 
-## interface↑
+### interface
 
 クライアントからのリクエストを受け取る。
 usecase 層からのレスポンスをユーザーに返す。
 
-## usecase↑
+### usecase↑
 
 interface 層からのリクエストを捌く。（参照、保存、削除など）
 
-## domain↑
+### domain↑
 
 DDD の中心となる部分。
 ドメインのルールやデータの加工を担う。
 
-## infrastructure↑
+### infrastructure↑
 
 技術基盤へのアクセス。
 データを永続化するために DB の操作などを担う。
