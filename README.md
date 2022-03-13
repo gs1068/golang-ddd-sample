@@ -81,7 +81,5 @@ sh main.sh
 
 # Author
 
-作成情報を列挙する
-
 - Genta Saito
 - genta.otias@gmail.com
