@@ -18,11 +18,12 @@ func main() {
 	taskUsecase := usecase.NewTaskUsecase(taskRepository)
 	// ④usecaseのインターフェイスをhandlerのインターフェイスに代入している
 	taskHandler := handler.NewTaskHandler(taskUsecase)
-
-	// 上記で、
-	// ①infrastructure → ②domain → ③usecase → ④interfaceを実現している
+	// 上記で、①infrastructure → ②domain → ③usecase → ④interfaceを実現している
 	e := echo.New()
-	// ルーティングの定義
-	handler.InitRouting(e, taskHandler)
+	// task
+	e.POST("/task", taskHandler.Post())
+	e.GET("/task/:id", taskHandler.Get())
+	e.PUT("/task/:id", taskHandler.Put())
+	e.DELETE("/task/:id", taskHandler.Delete())
 	e.Logger.Fatal(e.Start(":8888"))
 }
