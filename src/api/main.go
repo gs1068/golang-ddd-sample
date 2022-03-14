@@ -11,19 +11,23 @@ import (
 )
 
 func main() {
-	// ①config.NewDB():dbを返している
-	// ②dbを含む構造体{Conn: db}をCRUDのインターフェイス型に変換している
-	taskRepository := infra.NewTaskRepository(config.NewDB())
-	// ③レポジトリのインターフェイスをusecaseのインターフェイスに代入している
-	taskUsecase := usecase.NewTaskUsecase(taskRepository)
-	// ④usecaseのインターフェイスをhandlerのインターフェイスに代入している
-	taskHandler := handler.NewTaskHandler(taskUsecase)
-	// 上記で、①infrastructure → ②domain → ③usecase → ④interfaceを実現している
 	e := echo.New()
 	// task
+	taskRepository := infra.NewTaskRepository(config.NewDB())
+	taskUsecase := usecase.NewTaskUsecase(taskRepository)
+	taskHandler := handler.NewTaskHandler(taskUsecase)
 	e.POST("/task", taskHandler.Post())
 	e.GET("/task/:id", taskHandler.Get())
 	e.PUT("/task/:id", taskHandler.Put())
 	e.DELETE("/task/:id", taskHandler.Delete())
+
+	// user
+	userRepository := infra.NewUserRepository(config.NewDB())
+	userUsecase := usecase.NewUserUsecase(userRepository)
+	userHandler := handler.NewUserHandler(userUsecase)
+	e.POST("/user", userHandler.Post())
+	e.GET("/user/:id", userHandler.Get())
+	e.PUT("/user/:id", userHandler.Put())
+	e.DELETE("/user/:id", userHandler.Delete())
 	e.Logger.Fatal(e.Start(":8888"))
 }

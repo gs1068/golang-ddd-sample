@@ -1,0 +1,10 @@
+-- +migrate Up
+CREATE TABLE IF NOT EXISTS `users` (
+  id INT AUTO_INCREMENT NOT NULL,
+  user_name VARCHAR(255),
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP,
+  PRIMARY KEY (id)
+);
+-- +migrate Down
+DROP TABLE IF EXISTS `users`;
