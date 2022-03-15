@@ -4,6 +4,7 @@ import (
 	"github.com/gs1068/golang_ddd_sample/config"
 	"github.com/gs1068/golang_ddd_sample/infra"
 	"github.com/gs1068/golang_ddd_sample/interface/handler"
+	"github.com/gs1068/golang_ddd_sample/interface/router"
 	"github.com/gs1068/golang_ddd_sample/usecase"
 
 	_ "github.com/jinzhu/gorm/dialects/mysql"
@@ -12,22 +13,16 @@ import (
 
 func main() {
 	e := echo.New()
+	db := config.NewDB()
 	// task
-	taskRepository := infra.NewTaskRepository(config.NewDB())
+	taskRepository := infra.NewTaskRepository(db)
 	taskUsecase := usecase.NewTaskUsecase(taskRepository)
 	taskHandler := handler.NewTaskHandler(taskUsecase)
-	e.POST("/task", taskHandler.Post())
-	e.GET("/task/:id", taskHandler.Get())
-	e.PUT("/task/:id", taskHandler.Put())
-	e.DELETE("/task/:id", taskHandler.Delete())
-
+	router.InitTaskRouting(e, taskHandler)
 	// user
-	userRepository := infra.NewUserRepository(config.NewDB())
+	userRepository := infra.NewUserRepository(db)
 	userUsecase := usecase.NewUserUsecase(userRepository)
 	userHandler := handler.NewUserHandler(userUsecase)
-	e.POST("/user", userHandler.Post())
-	e.GET("/user/:id", userHandler.Get())
-	e.PUT("/user/:id", userHandler.Put())
-	e.DELETE("/user/:id", userHandler.Delete())
+	router.InitUserRouting(e, userHandler)
 	e.Logger.Fatal(e.Start(":8888"))
 }
