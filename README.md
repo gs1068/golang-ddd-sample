@@ -36,17 +36,18 @@ src
 │   └── database.go
 ├── domain(中心となる部分)
 │   ├── model:構造体やモデルがどんなものかが書かれる
-│   │   └── task.go
+│   │   └── user.go
 │   └── repository:DBとのやりとりやCRUDが書かれる
-│       └── task.go
+│       └── user.go
 ├── infra
-│   └── task.go
+│   └── user.go
 ├── interface
-│   └── handler
-│       ├── router.go
-│       └── task.go
+│   ├── handler
+│   │   └── user.go
+│   └── router
+│       └── user.go
 └── usecase
-    └── task.go
+    └── user.go
 ```
 
 # Requirement
