@@ -2,7 +2,7 @@ docker:
 	docker-compose up -d --build
 
 main:
-	docker-compose exec go fresh -c fresh.conf
+	docker-compose exec go go run api/main.go
 
 remake:
 	docker-compose exec db mysql -u root --execute="DROP DATABASE dddsample;";

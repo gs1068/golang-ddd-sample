@@ -8,5 +8,6 @@ import (
 func main() {
 	db := config.NewDB()
 	defer db.Close()
+	seed.UsersSeed(db)
 	seed.TasksSeed(db)
 }
