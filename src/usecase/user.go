@@ -8,6 +8,7 @@ import (
 type UserUsecase interface {
 	Create(usename string) (*model.User, error)
 	FindByID(id int) (*model.User, error)
+	FindAll() (*[]model.User, error)
 	Update(id int, username string) (*model.User, error)
 	Delete(id int) error
 }
@@ -36,6 +37,15 @@ func (uu *userUsecase) Create(username string) (*model.User, error) {
 
 func (uu *userUsecase) FindByID(id int) (*model.User, error) {
 	foundUser, err := uu.userRepo.FindByID(id)
+	if err != nil {
+		return nil, err
+	}
+
+	return foundUser, nil
+}
+
+func (uu *userUsecase) FindAll() (*[]model.User, error) {
+	foundUser, err := uu.userRepo.FindAll()
 	if err != nil {
 		return nil, err
 	}

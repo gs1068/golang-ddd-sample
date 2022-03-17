@@ -9,6 +9,7 @@ import (
 func InitUserRouting(e *echo.Echo, userHandler handler.UserHandler) {
 	e.POST("/user", userHandler.Post())
 	e.GET("/user/:id", userHandler.Get())
+	e.GET("/users", userHandler.GetAll())
 	e.PUT("/user/:id", userHandler.Put())
 	e.DELETE("/user/:id", userHandler.Delete())
 }

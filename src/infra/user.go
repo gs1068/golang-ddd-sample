@@ -32,6 +32,16 @@ func (ur *UserRepository) FindByID(id int) (*model.User, error) {
 	return user, nil
 }
 
+func (ur *UserRepository) FindAll() (*[]model.User, error) {
+	user := &[]model.User{}
+
+	if err := ur.Conn.Find(&user).Error; err != nil {
+		return nil, err
+	}
+
+	return user, nil
+}
+
 func (ur *UserRepository) Update(user *model.User) (*model.User, error) {
 	if err := ur.Conn.Model(&user).Update(&user).Error; err != nil {
 		return nil, err
