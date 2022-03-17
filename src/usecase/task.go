@@ -5,11 +5,10 @@ import (
 	"github.com/gs1068/golang_ddd_sample/domain/repository"
 )
 
-// TaskUsecase task usecaseのinterface
 type TaskUsecase interface {
-	Create(title, content string) (*model.Task, error)
+	Create(user_id int, title, content string) (*model.Task, error)
 	FindByID(id int) (*model.Task, error)
-	Update(id int, title, content string) (*model.Task, error)
+	Update(id int, user_id int, title, content string) (*model.Task, error)
 	Delete(id int) error
 }
 
@@ -17,14 +16,12 @@ type taskUsecase struct {
 	taskRepo repository.TaskRepository
 }
 
-// NewTaskUsecase task usecaseのコンストラクタ
 func NewTaskUsecase(taskRepo repository.TaskRepository) TaskUsecase {
 	return &taskUsecase{taskRepo: taskRepo}
 }
 
-// Create taskを保存するときのユースケース
-func (tu *taskUsecase) Create(title, content string) (*model.Task, error) {
-	task, err := model.NewTask(title, content)
+func (tu *taskUsecase) Create(user_id int, title, content string) (*model.Task, error) {
+	task, err := model.NewTask(user_id, title, content)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +34,6 @@ func (tu *taskUsecase) Create(title, content string) (*model.Task, error) {
 	return createdTask, nil
 }
 
-// FindByID taskをIDで取得するときのユースケース
 func (tu *taskUsecase) FindByID(id int) (*model.Task, error) {
 	foundTask, err := tu.taskRepo.FindByID(id)
 	if err != nil {
@@ -47,8 +43,7 @@ func (tu *taskUsecase) FindByID(id int) (*model.Task, error) {
 	return foundTask, nil
 }
 
-// Update taskを更新するときのユースケース
-func (tu *taskUsecase) Update(id int, title, content string) (*model.Task, error) {
+func (tu *taskUsecase) Update(id, user_id int, title, content string) (*model.Task, error) {
 	targetTask, err := tu.taskRepo.FindByID(id)
 	if err != nil {
 		return nil, err
@@ -67,7 +62,6 @@ func (tu *taskUsecase) Update(id int, title, content string) (*model.Task, error
 	return updatedTask, nil
 }
 
-// Delete taskを削除するときのユースケース
 func (tu *taskUsecase) Delete(id int) error {
 	task, err := tu.taskRepo.FindByID(id)
 	if err != nil {
