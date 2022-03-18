@@ -14,15 +14,15 @@ import (
 func main() {
 	e := echo.New()
 	db := config.NewDB()
-	// task
-	taskRepository := infra.NewTaskRepository(db)
-	taskUsecase := usecase.NewTaskUsecase(taskRepository)
-	taskHandler := handler.NewTaskHandler(taskUsecase)
-	router.InitTaskRouting(e, taskHandler)
 	// user
 	userRepository := infra.NewUserRepository(db)
 	userUsecase := usecase.NewUserUsecase(userRepository)
 	userHandler := handler.NewUserHandler(userUsecase)
 	router.InitUserRouting(e, userHandler)
+	// task
+	taskRepository := infra.NewTaskRepository(db)
+	taskUsecase := usecase.NewTaskUsecase(taskRepository)
+	taskHandler := handler.NewTaskHandler(taskUsecase)
+	router.InitTaskRouting(e, taskHandler)
 	e.Logger.Fatal(e.Start(":8888"))
 }
