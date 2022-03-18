@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"fmt"
 	"net/http"
 	"strconv"
 
@@ -11,6 +12,7 @@ import (
 type UserHandler interface {
 	Post() echo.HandlerFunc
 	Get() echo.HandlerFunc
+	GetAll() echo.HandlerFunc
 	Put() echo.HandlerFunc
 	Delete() echo.HandlerFunc
 }
@@ -71,6 +73,33 @@ func (uh *userHandler) Get() echo.HandlerFunc {
 		}
 
 		return c.JSON(http.StatusOK, res)
+	}
+}
+
+func (uh *userHandler) GetAll() echo.HandlerFunc {
+	return func(c echo.Context) error {
+
+		x := []int{1, 2, 3, 4, 5}
+		fmt.Println(x)
+
+		y := []int{100, 200, 300, 400, 500}
+		x = append(x, y...)
+		fmt.Println(x)
+
+		foundUsers, err := uh.userUsecase.FindAll()
+		if err != nil {
+			return c.JSON(http.StatusBadRequest, err.Error())
+		}
+
+		var test []responseUser
+
+		for _, _user := range *foundUsers {
+			user := _user
+			fmt.Printf("%p\n", user)
+			test = append(test, user)
+		}
+
+		return c.JSON(http.StatusOK, foundUsers)
 	}
 }
 
