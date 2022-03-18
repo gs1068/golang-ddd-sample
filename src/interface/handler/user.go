@@ -1,7 +1,6 @@
 package handler
 
 import (
-	"fmt"
 	"net/http"
 	"strconv"
 
@@ -79,27 +78,23 @@ func (uh *userHandler) Get() echo.HandlerFunc {
 func (uh *userHandler) GetAll() echo.HandlerFunc {
 	return func(c echo.Context) error {
 
-		x := []int{1, 2, 3, 4, 5}
-		fmt.Println(x)
-
-		y := []int{100, 200, 300, 400, 500}
-		x = append(x, y...)
-		fmt.Println(x)
-
 		foundUsers, err := uh.userUsecase.FindAll()
 		if err != nil {
 			return c.JSON(http.StatusBadRequest, err.Error())
 		}
 
-		var test []responseUser
+		var res []responseUser
 
 		for _, _user := range *foundUsers {
 			user := _user
-			fmt.Printf("%p\n", user)
-			test = append(test, user)
+			new_user := responseUser{
+				ID:       user.ID,
+				UserName: user.UserName,
+			}
+			res = append(res, new_user)
 		}
 
-		return c.JSON(http.StatusOK, foundUsers)
+		return c.JSON(http.StatusOK, res)
 	}
 }
 
