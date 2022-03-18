@@ -12,6 +12,7 @@ import (
 type TaskHandler interface {
 	Post() echo.HandlerFunc
 	Get() echo.HandlerFunc
+	GetPL() echo.HandlerFunc
 	Put() echo.HandlerFunc
 	Delete() echo.HandlerFunc
 }
@@ -35,6 +36,14 @@ type responseTask struct {
 	UserID  int    `json:"user_id"`
 	Title   string `json:"title"`
 	Content string `json:"content"`
+}
+
+type responseTaskUser struct {
+	ID      int          `json:"id"`
+	UserID  int          `json:"user_id"`
+	Title   string       `json:"title"`
+	Content string       `json:"content"`
+	User    responseUser `json:"user"`
 }
 
 func (th *taskHandler) Post() echo.HandlerFunc {
@@ -77,6 +86,31 @@ func (th *taskHandler) Get() echo.HandlerFunc {
 			UserID:  foundTask.UserID,
 			Title:   foundTask.Title,
 			Content: foundTask.Content,
+		}
+
+		return c.JSON(http.StatusOK, res)
+	}
+}
+
+func (th *taskHandler) GetPL() echo.HandlerFunc {
+	return func(c echo.Context) error {
+		id, err := strconv.Atoi((c.Param("id")))
+		if err != nil {
+			return c.JSON(http.StatusBadRequest, err.Error())
+		}
+		foundTask, err := th.taskUsecase.FindByIDPL(id)
+		if err != nil {
+			return c.JSON(http.StatusBadRequest, err.Error())
+		}
+		res := responseTaskUser{
+			ID:      foundTask.ID,
+			UserID:  foundTask.UserID,
+			Title:   foundTask.Title,
+			Content: foundTask.Content,
+			User: responseUser{
+				ID:       foundTask.User.ID,
+				UserName: foundTask.User.UserName,
+			},
 		}
 
 		return c.JSON(http.StatusOK, res)

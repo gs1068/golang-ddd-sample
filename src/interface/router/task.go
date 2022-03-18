@@ -9,6 +9,7 @@ import (
 func InitTaskRouting(e *echo.Echo, taskHandler handler.TaskHandler) {
 	e.POST("/task", taskHandler.Post())
 	e.GET("/task/:id", taskHandler.Get())
+	e.GET("/task/pl/:id", taskHandler.GetPL())
 	e.PUT("/task/:id", taskHandler.Put())
 	e.DELETE("/task/:id", taskHandler.Delete())
 }
