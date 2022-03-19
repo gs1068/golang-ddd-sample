@@ -68,8 +68,8 @@ docker-compose up -d
 Database 立ち上げと Seed 作成
 
 ```bash
-sh remake_databases.sh
-sh migrate.sh
+make remake
+make migrate
 ```
 
 # Usage
@@ -77,7 +77,7 @@ sh migrate.sh
 Echo サーバー立ち上げ(fresh によるホットリロードが効くためファイル変更時に立ち上げ直す必要なし)
 
 ```bash
-sh main.sh
+make main
 ```
 
 # Author
