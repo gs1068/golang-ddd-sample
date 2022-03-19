@@ -1,6 +1,3 @@
-docker:
-	docker-compose up -d --build
-
 main:
 	docker-compose exec go go run api/main.go
 
