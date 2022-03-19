@@ -7,12 +7,10 @@ import (
 	"github.com/jinzhu/gorm"
 )
 
-// TaskRepository task repositoryの構造体
 type TaskRepository struct {
 	Conn *gorm.DB
 }
 
-// NewTaskRepository task repositoryのコンストラクタ
 func NewTaskRepository(conn *gorm.DB) repository.TaskRepository {
 	return &TaskRepository{Conn: conn}
 }
