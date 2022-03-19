@@ -7,7 +7,7 @@ RUN apk add --update --no-cache ca-certificates git && \
     apk add --no-cache musl-dev
 
 WORKDIR /go/src/app/
-COPY ./src /go/src/app
+COPY ./ /go/src/app
 
 RUN go mod tidy
 
@@ -24,7 +24,7 @@ EXPOSE 8888
 FROM golang:1.16 as local
 
 WORKDIR /go/src/app/
-COPY ./src /go/src/app
+COPY ./ /go/src/app
 
 RUN go get github.com/pilu/fresh
 RUN go get github.com/jinzhu/gorm

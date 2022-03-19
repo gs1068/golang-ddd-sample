@@ -22,6 +22,6 @@ services:
       - 8888:8888
     tty: true
     volumes:
-      - ./src:/go/src/app
+      - ./:/go/src/app
 volumes:
   db-store:
