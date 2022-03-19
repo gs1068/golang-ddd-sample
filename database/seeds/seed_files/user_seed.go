@@ -8,7 +8,7 @@ import (
 )
 
 type User struct {
-	UserName 	string
+	UserName string
 }
 
 func UsersSeed(db *gorm.DB) error {
