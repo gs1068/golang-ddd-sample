@@ -10,4 +10,5 @@ func main() {
 	defer db.Close()
 	seed.UsersSeed(db)
 	seed.TasksSeed(db)
+	seed.TimelinesSeed(db)
 }

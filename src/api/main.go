@@ -24,5 +24,10 @@ func main() {
 	taskUsecase := usecase.NewTaskUsecase(taskRepository)
 	taskHandler := handler.NewTaskHandler(taskUsecase)
 	router.InitTaskRouting(e, taskHandler)
+	// timeline
+	timelineRepository := infra.NewTimelineRepository(db)
+	timelineUsecase := usecase.NewTimelineUsecase(timelineRepository)
+	timelineHandler := handler.NewTimelineHandler(timelineUsecase)
+	router.InitTimelineRouting(e, timelineHandler)
 	e.Logger.Fatal(e.Start(":8888"))
 }
