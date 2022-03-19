@@ -10,6 +10,7 @@ type Task struct {
 	UserID  int
 	Title   string
 	Content string
+	User    User
 }
 
 // NewTask taskのコンストラクタ

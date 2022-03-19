@@ -35,6 +35,16 @@ func (tr *TaskRepository) FindByID(id int) (*model.Task, error) {
 	return task, nil
 }
 
+func (tr *TaskRepository) FindByIDPL(id int) (*model.Task, error) {
+	task := &model.Task{ID: id}
+
+	if err := tr.Conn.Preload("User").First(&task).Error; err != nil {
+		return nil, err
+	}
+
+	return task, nil
+}
+
 func (tr *TaskRepository) Update(task *model.Task) (*model.Task, error) {
 	if err := tr.Conn.Model(&task).Update(&task).Error; err != nil {
 		return nil, err
