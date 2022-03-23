@@ -7,8 +7,8 @@ import (
 	"testing"
 
 	gomock "github.com/golang/mock/gomock"
-	model "github.com/gs1068/golang_ddd_sample/domain/model"
-	"github.com/gs1068/golang_ddd_sample/usecase"
+	model "github.com/gs1068/golang-ddd-sample/domain/model"
+	"github.com/gs1068/golang-ddd-sample/usecase"
 	"github.com/stretchr/testify/assert"
 )
 

@@ -8,7 +8,7 @@ import (
 	reflect "reflect"
 
 	gomock "github.com/golang/mock/gomock"
-	model "github.com/gs1068/golang_ddd_sample/domain/model"
+	model "github.com/gs1068/golang-ddd-sample/domain/model"
 )
 
 // MockUserRepository is a mock of UserRepository interface.
@@ -22,7 +22,7 @@ type MockUserRepositoryMockRecorder struct {
 	mock *MockUserRepository
 }
 
-// NewMockUserRepository creates a new mock instance.
+// NewMockUserRepository Ncreates a new mock instance.
 func NewMockUserRepository(ctrl *gomock.Controller) *MockUserRepository {
 	mock := &MockUserRepository{ctrl: ctrl}
 	mock.recorder = &MockUserRepositoryMockRecorder{mock}

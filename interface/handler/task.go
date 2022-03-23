@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/gs1068/golang_ddd_sample/usecase"
+	"github.com/gs1068/golang-ddd-sample/usecase"
 
 	"github.com/labstack/echo"
 )

@@ -1,4 +1,4 @@
-module github.com/gs1068/golang_ddd_sample
+module github.com/gs1068/golang-ddd-sample
 
 go 1.16
 
