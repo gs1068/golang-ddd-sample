@@ -20,6 +20,11 @@ require (
 	github.com/pilu/fresh v0.0.0-20190826141211-0fa698148017 // indirect
 	github.com/rakyll/gotest v0.0.6 // indirect
 	github.com/rubenv/sql-migrate v1.1.1 // indirect
+	github.com/stretchr/testify v1.7.1
+	golang.org/x/crypto v0.0.0-20210921155107-089bfa567519 // indirect
+	golang.org/x/net v0.0.0-20211015210444-4f30a5c0130f // indirect
 	golang.org/x/sys v0.0.0-20220319134239-a9b59b0215f8 // indirect
+	golang.org/x/text v0.3.7 // indirect
 	golang.org/x/tools v0.1.10 // indirect
+	gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c // indirect
 )

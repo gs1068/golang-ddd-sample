@@ -13,11 +13,11 @@ import (
 )
 
 var err error
-var expected = &model.User{}
 
 func TestUserSuccessCreate(t *testing.T) {
 	mockCtrl := gomock.NewController(t)
 	defer mockCtrl.Finish()
+	var expected = &model.User{}
 	var args = &model.User{
 		UserName: "test",
 	}
@@ -44,42 +44,64 @@ func TestUserFailureCreate(t *testing.T) {
 	mockUser := NewMockUserRepository(mockCtrl)
 	userUsecase := usecase.NewUserUsecase(mockUser)
 	_, err := userUsecase.Create("")
-	fmt.Print("エラーbool,", reflect.TypeOf(err) == reflect.TypeOf(errExpected))
 	if err == nil {
 		t.Error("Actual Create() is not same as expected")
 	}
-	assert.NotNil(t, err)
-
-	// if !reflect.DeepEqual(result, expected) {
-	// 	t.Errorf("Actual Create() is not same as expected")
-	// }
+	assert.Equal(t, err, errExpected)
 }
 
-// func TestUserFailureCreate2(t *testing.T) {
-// 	mockCtrl := gomock.NewController(t)
-// 	errExpected := fmt.Errorf("ユーザーネームを入力してください")
-// 	defer mockCtrl.Finish()
-// 	var want = &model.User{
-// 		UserName: "",
-// 	}
+func TestUserFindAllSuccess(t *testing.T) {
+	mockCtrl := gomock.NewController(t)
+	defer mockCtrl.Finish()
+	var expected = &[]model.User{}
+	mockUser := NewMockUserRepository(mockCtrl)
+	mockUser.EXPECT().FindAll().Return(expected, err)
+	userUsecase := usecase.NewUserUsecase(mockUser)
+	result, err := userUsecase.FindAll()
+	if err != nil {
+		t.Error("Actual Create() is not same as expected")
+	}
 
-// 	var args = &model.User{
-// 		UserName: "",
-// 	}
+	if !reflect.DeepEqual(result, expected) {
+		t.Errorf("Actual Create() is not same as expected")
+	}
+}
 
-// 	mockUser := NewMockUserRepository(mockCtrl)
-// 	mockUser.EXPECT().Create(want).Return(expected, err)
-// 	userRepository := repository.UserRepository(mockUser)
-// 	result, err := userRepository.Create(args)
+func TestUserDeleteSeccess(t *testing.T) {
+	mockCtrl := gomock.NewController(t)
+	defer mockCtrl.Finish()
+	var expected = &model.User{}
+	mockUser := NewMockUserRepository(mockCtrl)
+	mockUser.EXPECT().FindByID(gomock.Any()).Return(expected, err)
+	mockUser.EXPECT().Delete(gomock.Any()).Return(err)
+	userUsecase := usecase.NewUserUsecase(mockUser)
+	err := userUsecase.Delete(1)
+	if err != nil {
+		t.Error("Actual Delete() is not same as expected")
+	}
+}
 
-// 	fmt.Println(err, errExpected)
-// 	fmt.Print(result)
+func TestUserDeleteFailure(t *testing.T) {
+	mockCtrl := gomock.NewController(t)
+	defer mockCtrl.Finish()
+	findID := 44444
+	// var args = &model.User{
+	// 	ID:       0,
+	// 	UserName: "",
+	// }
+	var expected = &model.User{}
+	mockUser := NewMockUserRepository(mockCtrl)
+	// mockUser.EXPECT().FindByID(findID).Return(expected, err)
+	// fmt.Print("エラー", err)
+	// mockUser.EXPECT().Delete(expected).Return(err)
+	userUsecase := usecase.NewUserUsecase(mockUser)
 
-// 	if err == errExpected {
-// 		t.Error("Actual Create() is not same as expected")
-// 	}
+	err := userUsecase.Delete(findID)
 
-// 	if !reflect.DeepEqual(result, expected) {
-// 		t.Errorf("Actual Create() is not same as expected")
-// 	}
-// }
+	fmt.Print(expected)
+
+	fmt.Print("エラー", err)
+	if err != nil {
+		t.Error("Actual Delete() is not same as expected")
+	}
+}
