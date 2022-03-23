@@ -1,6 +1,7 @@
 package mock_repository
 
 import (
+	"errors"
 	"fmt"
 	reflect "reflect"
 	"testing"
@@ -8,6 +9,7 @@ import (
 	gomock "github.com/golang/mock/gomock"
 	model "github.com/gs1068/golang_ddd_sample/domain/model"
 	"github.com/gs1068/golang_ddd_sample/usecase"
+	"github.com/stretchr/testify/assert"
 )
 
 var err error
@@ -36,28 +38,21 @@ func TestUserSuccessCreate(t *testing.T) {
 
 func TestUserFailureCreate(t *testing.T) {
 	mockCtrl := gomock.NewController(t)
-	errExpected := fmt.Errorf("ユーザーネームを入力してください")
+	errExpected := errors.New("ユーザーネームを入力してください")
 	defer mockCtrl.Finish()
-	var args = &model.User{
-		UserName: "",
-	}
 
 	mockUser := NewMockUserRepository(mockCtrl)
-	mockUser.EXPECT().Create(args).Return(nil, err)
 	userUsecase := usecase.NewUserUsecase(mockUser)
-
-	result, err := userUsecase.Create("")
-	if err != errExpected {
+	_, err := userUsecase.Create("")
+	fmt.Print("エラーbool,", reflect.TypeOf(err) == reflect.TypeOf(errExpected))
+	if err == nil {
 		t.Error("Actual Create() is not same as expected")
 	}
+	assert.NotNil(t, err)
 
-	// fmt.Print("エラー", err, "期待", errExpected)
-	// fmt.Print("エラー", reflect.TypeOf(err) == reflect.TypeOf(errExpected))
-	// fmt.Print(result)
-
-	if !reflect.DeepEqual(result, expected) {
-		t.Errorf("Actual Create() is not same as expected")
-	}
+	// if !reflect.DeepEqual(result, expected) {
+	// 	t.Errorf("Actual Create() is not same as expected")
+	// }
 }
 
 // func TestUserFailureCreate2(t *testing.T) {
