@@ -1,8 +1,8 @@
 package usecase
 
 import (
-	"github.com/gs1068/golang_ddd_sample/domain/model"
-	"github.com/gs1068/golang_ddd_sample/domain/repository"
+	"github.com/gs1068/golang-ddd-sample/domain/model"
+	"github.com/gs1068/golang-ddd-sample/domain/repository"
 )
 
 type TimelineUsecase interface {

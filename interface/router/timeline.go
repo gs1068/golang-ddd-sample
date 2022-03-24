@@ -1,7 +1,7 @@
 package router
 
 import (
-	"github.com/gs1068/golang_ddd_sample/interface/handler"
+	"github.com/gs1068/golang-ddd-sample/interface/handler"
 	"github.com/labstack/echo"
 )
 

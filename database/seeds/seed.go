@@ -3,8 +3,8 @@ package main
 import (
 	"sync"
 
-	"github.com/gs1068/golang_ddd_sample/config"
-	seed "github.com/gs1068/golang_ddd_sample/database/seeds/seed_files"
+	"github.com/gs1068/golang-ddd-sample/config"
+	seed "github.com/gs1068/golang-ddd-sample/database/seeds/seed_files"
 )
 
 func main() {
