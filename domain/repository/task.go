@@ -1,7 +1,7 @@
 package repository
 
 import (
-	"github.com/gs1068/golang_ddd_sample/domain/model"
+	"github.com/gs1068/golang-ddd-sample/domain/model"
 )
 
 type TaskRepository interface {

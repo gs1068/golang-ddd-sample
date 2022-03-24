@@ -29,6 +29,7 @@ COPY ./ /go/src/app
 RUN go get github.com/pilu/fresh
 RUN go get github.com/jinzhu/gorm
 RUN go get github.com/rubenv/sql-migrate/...
+RUN go get github.com/rakyll/gotest
 
 RUN go mod tidy
 

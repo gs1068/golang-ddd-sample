@@ -1,11 +1,11 @@
 package main
 
 import (
-	"github.com/gs1068/golang_ddd_sample/config"
-	"github.com/gs1068/golang_ddd_sample/infra"
-	"github.com/gs1068/golang_ddd_sample/interface/handler"
-	"github.com/gs1068/golang_ddd_sample/interface/router"
-	"github.com/gs1068/golang_ddd_sample/usecase"
+	"github.com/gs1068/golang-ddd-sample/config"
+	"github.com/gs1068/golang-ddd-sample/infra"
+	"github.com/gs1068/golang-ddd-sample/interface/handler"
+	"github.com/gs1068/golang-ddd-sample/interface/router"
+	"github.com/gs1068/golang-ddd-sample/usecase"
 
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"github.com/labstack/echo"
