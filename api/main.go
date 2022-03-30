@@ -11,7 +11,6 @@ import (
 	"github.com/labstack/echo"
 )
 
-// main
 func main() {
 	e := echo.New()
 	db := config.NewDB()
