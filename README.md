@@ -79,8 +79,3 @@ Echo サーバー立ち上げ(fresh によるホットリロードが効くた�
 ```bash
 make main
 ```
-
-# Author
-
-- Genta Saito
-- genta.otias@gmail.com
