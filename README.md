@@ -8,19 +8,19 @@ use DDD Architecture
 usecase 層からのレスポンスをユーザーに返す。
 リクエストやレスポンスが変わってもここだけ修正すれば済むようになる
 
-## usecase↑
+## usecase
 
 interface 層からのリクエストを捌く。（参照、保存、削除など）
 基本的に domain の repository を介してアクセスすることで、domain 層に依存させる
 
-## domain↑
+## domain
 
 DDD の中心となる部分。
 ドメインのルールやデータの加工を担う。
 domain 層には技術的な関心ごとを実装しな
 　 →DB の種類、ORM など
 
-## infrastructure↑
+## infrastructure
 
 技術基盤へのアクセス。
 データを永続化するために DB の操作などを担う。
