@@ -6,7 +6,7 @@ require (
 	github.com/cweill/gotests v1.6.0 // indirect
 	github.com/denisenkom/go-mssqldb v0.9.0 // indirect
 	github.com/fatih/color v1.13.0 // indirect
-	github.com/go-sql-driver/mysql v1.5.0
+	github.com/go-sql-driver/mysql v1.8.1
 	github.com/golang/mock v1.6.0
 	github.com/howeyc/fsnotify v0.9.0 // indirect
 	github.com/jinzhu/gorm v1.9.16
