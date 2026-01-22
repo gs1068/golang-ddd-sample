@@ -3,7 +3,7 @@ version: "3.8"
 services:
   db:
     platform: linux/x86_64
-    image: mysql:9.5.0
+    image: mysql:9.6.0
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: 1
       TZ: "Asia/Tokyo"
