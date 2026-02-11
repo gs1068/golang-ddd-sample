@@ -1,5 +1,5 @@
 # 本番環境中間ステージ
-FROM golang:1.25-alpine as builder
+FROM golang:1.26-alpine as builder
 
 RUN apk add --update --no-cache ca-certificates git && \
     apk add vim && \
@@ -21,7 +21,7 @@ CMD [ "/go/src/app/main" ]
 EXPOSE 8888
 
 # 開発環境用
-FROM golang:1.25 as local
+FROM golang:1.26 as local
 
 WORKDIR /go/src/app/
 COPY ./ /go/src/app
